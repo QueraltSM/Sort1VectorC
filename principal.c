@@ -1,28 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "compvect.h"
+#include "metodo.h"
 #include "obtenciondatos.h"
 
-int main()
-{
-   
-    int tam[] = {1000, 2000, 4000, 8000, 16000, 32000};
-    float *t_inv = (float*) malloc (6*sizeof(float));
-    float *t_ale = (float*) malloc (6*sizeof(float));
-    obtencionDatos(tam, 6, t_inv, t_ale);
-    
-    printf("      Tiempo del vector en orden inverso   Tiempo del vector en orden aleatorio\n\n");
+int main(int argc, char** argv) {
+    float t_inv[6];    
+    float t_ale[6];    
+    int tam[] = {1000,2000,4000,8000,16000,32000};
+    obtencionDatos(tam, 6,t_inv,t_ale);
     int i;
-    for(i = 0;i<6;i++)
-    {
-        if (tam[i]<10000)
-            printf(" ");
-        printf("%d%35.5f%39.5f\n",tam[i],t_inv[i],t_ale[i]);
+    printf("\tTiempo orden inverso \t Tiempo orden aleatorio\n");
+    for(i=0;i<6;i++){
+        printf("%d \t %5.4f \t\t %5.4f \n",tam[i], t_inv[i],t_ale[i]);
     }
-    
-    free (t_inv);
-    free (t_ale);
-    
-    return 0;
-    
+    return (EXIT_SUCCESS);
 }
-
